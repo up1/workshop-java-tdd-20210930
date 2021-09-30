@@ -6,6 +6,6 @@ public class MyRange {
     }
 
     public boolean startWithInclude() {
-        return input.startsWith("[");
+        return input.startsWith(")");
     }
 }
