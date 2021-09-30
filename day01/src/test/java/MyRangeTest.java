@@ -34,4 +34,13 @@ public class MyRangeTest {
         assertEquals(1, result);
     }
 
+    @Test
+    @DisplayName("ตัวเลขเริ่มต้น เป็น 1 input = (1,5], result = 2")
+    public void case04() {
+        String input = "(1,5]";
+        MyRange range = new MyRange(input);
+        int result = range.getStart();
+        assertEquals(2, result);
+    }
+
 }

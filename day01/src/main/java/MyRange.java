@@ -11,6 +11,10 @@ public class MyRange {
     }
 
     public int getStart() {
-        return input.charAt(1) - ASCII_CODE_1;
+        char start = input.charAt(1);
+        if(startWithInclude()) {
+            return start - ASCII_CODE_1;
+        }
+        return start - (ASCII_CODE_1 - 1);
     }
 }
