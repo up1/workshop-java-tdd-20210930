@@ -23,9 +23,7 @@ public class MyRangeFailureTest {
     @DisplayName("ขึ้นต้นด้วย [, ( เท่านั้น input = 1,5] with junit 5")
     public void case02() {
         MyRange range = new MyRange("1,5]");
-        Exception e = assertThrows(InputInvalidException.class, () -> {
-            range.validate();
-        });
+        Exception e = assertThrows(InputInvalidException.class, range::validate);
         assertEquals("Input error", e.getMessage() );
     }
 
