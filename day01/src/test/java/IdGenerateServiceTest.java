@@ -4,7 +4,7 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class Random6 extends Random {
+class Random6 implements MyRandom {
     @Override
     public int nextInt(int bound) {
         return 6;
@@ -14,7 +14,7 @@ class Random6 extends Random {
 public class IdGenerateServiceTest {
     @Test
     public void getData() {
-        Random stub = new Random6(); // Dependency
+        MyRandom stub = new Random6(); // Dependency
         IdGenerateService service
                 = new IdGenerateService();
         // 2. Setter/field/property Injection
@@ -34,12 +34,16 @@ public class IdGenerateServiceTest {
         spy.verify(1);
 }
 
-class SpyRandom extends Random {
+class SpyRandom implements MyRandom {
     private int count;
 
     @Override
     public int nextInt(int bound) {
-        count++;
+        if(bound >= 5) {
+            count++;
+        } else {
+            fail("Bound in valid");
+        }
         return 6;
     }
 

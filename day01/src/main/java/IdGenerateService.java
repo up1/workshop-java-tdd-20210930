@@ -2,9 +2,9 @@ import java.util.Random;
 
 public class IdGenerateService {
 
-    private Random random;
+    private MyRandom random;
 
-    public void setRandom(Random random) {
+    public void setRandom(MyRandom random) {
         this.random = random;
     }
 
