@@ -15,7 +15,7 @@ public class EmployeeService {
         // TODO :: read data from database
         Optional<Employee> result = employeeRepository.findById(id);
         if(result.isPresent()) {
-            return new EmployeeResponse(id, "somkiat");
+            return new EmployeeResponse(id, result.get().getName());
         }
         throw new RuntimeException("Employee not found with id=" + id);
     }
