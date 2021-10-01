@@ -1,5 +1,6 @@
 package com.example.day02.employee;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,8 +15,20 @@ public class EmployeeControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    @AfterEach
+    public void clearData() {
+        employeeRepository.deleteAll();
+    }
+
     @Test
     public void getById() {
+        // Arrange
+        Employee demo = new Employee();
+        demo.setName("somkiat");
+        employeeRepository.save(demo);
         // Act
         EmployeeResponse result
                 = restTemplate.getForObject("/employee/1", EmployeeResponse.class);
