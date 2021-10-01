@@ -8,8 +8,12 @@ import java.util.Optional;
 @Service
 public class EmployeeService {
 
-    @Autowired
     private EmployeeRepository employeeRepository;
+
+    @Autowired
+    public EmployeeService(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
 
     public EmployeeResponse get(int id) {
         // TODO :: read data from database
