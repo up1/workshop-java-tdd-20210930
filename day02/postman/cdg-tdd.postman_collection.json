@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "aa437bc9-bf89-4b31-b31e-c93c8b21a9a8",
+		"name": "cdg-tdd",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Detail of employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8db3b53f-30fa-448e-96b2-03051e9a1236",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(1);",
+							"    pm.expect(jsonData.name).to.eql(\"somkiat\");",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"var schema = {",
+							"  \"type\": \"object\",",
+							"  \"properties\": {",
+							"    \"id\": {",
+							"      \"type\": \"integer\"",
+							"    },",
+							"    \"name\": {",
+							"      \"type\": \"string\"",
+							"    }",
+							"  },",
+							"  \"required\": [ \"id\", \"name\" ]",
+							"};",
+							"",
+							"var data = pm.response.json();",
+							"",
+							"pm.test('Schema is valid', function() {",
+							"  pm.expect(tv4.validate(data, schema)).to.be.true;",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/employee/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
